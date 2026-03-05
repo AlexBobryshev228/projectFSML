@@ -1,9 +1,33 @@
-import QtQuick
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 
-Window {
-    id: window
-    width: 640
-    height: 480
+ApplicationWindow {
     visible: true
-    title: qsTr("05.03.26 test")
+    width: 400
+    height: 400
+    title: "Play with Qt"
+
+    Rectangle {
+        id: muscle
+        width: 200
+        height: 200
+        color: "red"
+        anchors.centerIn: parent
+        radius: 20
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                // Меняем цвет при клике
+                muscle.color = muscle.color === "red" ? "green" : "red"
+            }
+        }
+
+        Text {
+            anchors.centerIn: parent
+            text: "Click me!"
+            color: "white"
+            font.pixelSize: 20
+        }
+    }
 }
