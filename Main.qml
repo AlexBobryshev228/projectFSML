@@ -28,6 +28,7 @@ ApplicationWindow {
             text: "Click me!"
             color: "white"
             font.pixelSize: 20
+
         }
     }
 }

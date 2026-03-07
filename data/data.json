@@ -1,0 +1,26 @@
+{
+  "muscles": [
+    { "id": "biceps", "name": "Бицепс", "description": "Сгибает руку в локте." },
+    { "id": "chest",  "name": "Грудные", "description": "Приведение руки, жимовые движения." }
+  ],
+  "exercises": [
+    {
+      "id": "curl",
+      "muscleIds": ["biceps"],
+      "name": "Сгибания на бицепс",
+      "difficulty": "beginner",
+      "equipment": "dumbbells",
+      "steps": ["Встань ровно", "Согни руки", "Опусти медленно"],
+      "cautions": ["Не раскачивай корпус"]
+    },
+    {
+      "id": "pushup",
+      "muscleIds": ["chest"],
+      "name": "Отжимания",
+      "difficulty": "beginner",
+      "equipment": "none",
+      "steps": ["Упрись руками", "Опускайся", "Выжимайся вверх"],
+      "cautions": ["Не проваливай поясницу"]
+    }
+  ]
+}
