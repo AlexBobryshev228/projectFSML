@@ -15,6 +15,7 @@ ApplicationWindow {
             spacing: 8
             Button { text: "Biceps"; onClicked: app.selectMuscle("biceps") }
             Button { text: "Chest";  onClicked: app.selectMuscle("chest") }
+            Button { text: "Справка";  onClicked: app.selectMuscle("d") }
             Text { text: "Selected: " + app.selectedMuscleId }
         }
 

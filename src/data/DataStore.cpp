@@ -4,6 +4,7 @@ QString DataStore::muscleName(const QString& id) const
 {
     if (id == "biceps") return "Бицепс";
     if (id == "chest")  return "Грудные мышцы";
+    if (id == "d") return "михан жирный";
     return "Неизвестно";
 }
 
