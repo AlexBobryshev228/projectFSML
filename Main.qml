@@ -1,34 +1,34 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 ApplicationWindow {
     visible: true
-    width: 400
-    height: 400
-    title: "Play with Qt"
+    width: 800
+    height: 500
 
-    Rectangle {
-        id: muscle
-        width: 200
-        height: 200
-        color: "red"
-        anchors.centerIn: parent
-        radius: 20
+    Row {
+        anchors.fill: parent
+        spacing: 16
+        padding: 16
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                // Меняем цвет при клике
-                muscle.color = muscle.color === "red" ? "green" : "red"
-            }
+        Column {
+            spacing: 8
+            Button { text: "Biceps"; onClicked: app.selectMuscle("biceps") }
+            Button { text: "Chest";  onClicked: app.selectMuscle("chest") }
+            Text { text: "Selected: " + app.selectedMuscleId }
         }
 
-        Text {
-            anchors.centerIn: parent
-            text: "Click me!"
-            color: "white"
-            font.pixelSize: 20
+        Column {
+            spacing: 8
+            Text { text: app.muscleName; font.pixelSize: 22 }
+            Text { text: app.muscleDescription; width: 420; wrapMode: Text.WordWrap }
 
+            ListView {
+                width: 420
+                height: 300
+                model: app.exercises
+                delegate: Text { text: "- " + modelData }
+            }
         }
     }
 }
