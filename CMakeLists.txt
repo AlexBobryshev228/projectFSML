@@ -10,6 +10,11 @@ qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(appProjectFSML
     main.cpp
+    src/app/AppController.cpp
+    src/app/AppController.h
+    src/data/DataStore.cpp
+    src/data/DataStore.h
+    resources.qrc
 )
 
 qt_add_qml_module(appProjectFSML
