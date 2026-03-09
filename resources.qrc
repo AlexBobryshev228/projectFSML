@@ -1,6 +1,7 @@
 <RCC>
-  <qresource prefix="/">
-    <file>Main.qml</file>
-    <file>data/data.json</file>
-  </qresource>
+    <qresource prefix="/">
+        <file>Main.qml</file>
+        <file>data/data.json</file>
+        <file>assets/Силуэты-мышц-человека-на-черном-фоне.svg</file>
+    </qresource>
 </RCC>
