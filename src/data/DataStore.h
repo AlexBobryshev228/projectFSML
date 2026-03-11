@@ -7,5 +7,5 @@ class DataStore {
 public:
     QString muscleName(const QString& id) const;
     QString muscleDescription(const QString& id) const;
-    QStringList exerciseNamesForMuscle(const QString& muscleId) const;
+
 };
