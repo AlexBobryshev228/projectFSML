@@ -3,13 +3,13 @@ import QtQuick.Controls
 
 ApplicationWindow {
     visible: true
-    visibility: Window.FullScreen   //changed by fedya (настоящий полноэкранный режим)
+    width: 1200
+    height: 800
     title: "Muscle Viewer"
-    color: "red"
 
     Image {
         anchors.fill: parent
-        source: "qrc:/assets/Силуэты-мышц-человека-на-черном-фоне.svg"
-
+        source: "qrc:/assets2/body.png"
+        fillMode: Image.PreserveAspectFit
     }
 }

@@ -3,13 +3,13 @@ import QtQuick.Controls
 
 ApplicationWindow {
     visible: true
-    visibility: Window.Maximized   // окно сразу на весь экранс (если сразу делать фулскрин у меня лагает поэтому так и тоже кайф)
+    width: 1200
+    height: 800
     title: "Muscle Viewer"
 
     Image {
         anchors.fill: parent
-        source: "qrc:/assets/Силуэты-мышц-человека-на-черном-фоне.svg"
-
-        fillMode: Image.Stretch    //changed by fedya (растягивает на всё окно)
+        source: "qrc:/assets2/body.png"
+        fillMode: Image.PreserveAspectFit
     }
 }
