@@ -17,3 +17,4 @@ void AppController::applySelection(const QString& id){
     emit muscleDescriptionChanged();
     emit exercisesChanged();
 }
+
