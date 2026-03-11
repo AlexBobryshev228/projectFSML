@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>data/data.json</file>
-        <file>../Downloads/body.png</file>
         <file>assets2/body.png</file>
     </qresource>
 </RCC>

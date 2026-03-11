@@ -27,7 +27,11 @@ qt_add_qml_module(appProjectFSML
         SOURCES src/data/Exercise.h
         SOURCES src/data/ExerciseRepository.h
         SOURCES src/data/ExerciseRepository.h src/data/ExerciseRepository.cpp
-)
+        RESOURCES
+            assets2/body.png
+            data/data.json
+        )
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

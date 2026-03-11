@@ -7,9 +7,12 @@ ApplicationWindow {
     height: 800
     title: "Muscle Viewer"
 
+    Component.onCompleted: {
+        console.log("IMAGE STATUS:", img.status, img.source)
+    }
     Image {
+        id: img
         anchors.fill: parent
-        source: "qrc:/assets2/body.png"
-        fillMode: Image.PreserveAspectFit
+        source: "qrc:/qt/qml/ProjectFSML/assets2/body.png"
     }
 }
