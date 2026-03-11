@@ -5,31 +5,31 @@ ApplicationWindow {
     visible: true
     width: 800
     height: 500
+    title: "UI check"
 
-    Row {
-        anchors.fill: parent
-        spacing: 16
-        padding: 16
+    Column {
+        anchors.centerIn: parent
+        spacing: 10
 
-        Column {
-            spacing: 8
-            Button { text: "Biceps"; onClicked: app.selectMuscle("biceps") }
-            Button { text: "Chest";  onClicked: app.selectMuscle("chest") }
-            Button { text: "Справка";  onClicked: app.selectMuscle("d") }
-            Text { text: "Selected: " + app.selectedMuscleId }
+        Text { text: "Muscles"; font.pixelSize: 30 }
+
+        Button {
+            text: "Biceps"
+            onClicked: app.selectMuscle("biceps")
         }
 
-        Column {
-            spacing: 8
-            Text { text: app.muscleName; font.pixelSize: 22 }
-            Text { text: app.muscleDescription; width: 420; wrapMode: Text.WordWrap }
+        Button {
+            text: "Chest"
+            onClicked: app.selectMuscle("chest")
+        }
+        Text { text: "Name: " + app.muscleName }
+        Text { text: "Desc: " + app.muscleDescription; width: 500; wrapMode: Text.WordWrap }
 
-            ListView {
-                width: 420
-                height: 300
-                model: app.exercises
-                delegate: Text { text: "- " + modelData }
-            }
+        ListView {
+            width: 500
+            height: 200
+            model: app.exercises
+            delegate: Text { text: "- " + modelData }
         }
     }
 }

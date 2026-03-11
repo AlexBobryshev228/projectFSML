@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QStringList>
 #include "../data/DataStore.h"
+#include "../data/ExerciseRepository.h"
 
 class AppController : public QObject
 {
@@ -37,7 +38,7 @@ signals: //сигналы что поменялось
 
 private:
     void applySelection(const QString& id);
-
+    ExerciseRepository exerciseRepo_;
     DataStore store_; // наш источник
     QString selectedMuscleId_;  // мышца которую мы выбрали
     QString muscleName_;        // имя выбранной мышцы

@@ -15,13 +15,4 @@ QString DataStore::muscleDescription(const QString& id) const
     return "";
 }
 
-QStringList DataStore::exerciseNamesForMuscle(const QString& muscleId) const
-{
-    if (muscleId == "biceps") {
-        return {"Сгибания с гантелями", "Подтягивания обратным хватом", "Сгибания со штангой"};
-    }
-    if (muscleId == "chest") {
-        return {"Отжимания", "Жим гантелей лёжа", "Жим штанги лёжа"};
-    }
-    return {};
-}
+
