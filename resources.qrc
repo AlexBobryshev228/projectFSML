@@ -2,6 +2,6 @@
     <qresource prefix="/">
         <file>Main.qml</file>
         <file>data/data.json</file>
-        <file>assets/Силуэты-мышц-человека-на-черном-фоне.svg</file>
+        <file>../Downloads/body.png</file>
     </qresource>
 </RCC>
