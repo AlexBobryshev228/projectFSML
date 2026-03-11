@@ -3,33 +3,13 @@ import QtQuick.Controls
 
 ApplicationWindow {
     visible: true
-    width: 800
-    height: 500
-    title: "UI check"
+    visibility: Window.FullScreen   //changed by fedya (настоящий полноэкранный режим)
+    title: "Muscle Viewer"
+    color: "red"
 
-    Column {
-        anchors.centerIn: parent
-        spacing: 10
+    Image {
+        anchors.fill: parent
+        source: "qrc:/assets/Силуэты-мышц-человека-на-черном-фоне.svg"
 
-        Text { text: "Muscles"; font.pixelSize: 30 }
-
-        Button {
-            text: "Biceps"
-            onClicked: app.selectMuscle("biceps")
-        }
-
-        Button {
-            text: "Chest"
-            onClicked: app.selectMuscle("chest")
-        }
-        Text { text: "Name: " + app.muscleName }
-        Text { text: "Desc: " + app.muscleDescription; width: 500; wrapMode: Text.WordWrap }
-
-        ListView {
-            width: 500
-            height: 200
-            model: app.exercises
-            delegate: Text { text: "- " + modelData }
-        }
     }
 }
