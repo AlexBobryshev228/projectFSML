@@ -3,3 +3,4 @@ cmake-build*/
 *.user
 CMakeFiles/
 CMakeCache.txt
+.DS_Store
