@@ -1,70 +1,79 @@
 #include "ExerciseRepository.h"
 
+#include <optional>
+#include <stdexcept>
+#include <variant>
+#include <memory>
+
+// constexpr
+constexpr const char* EASY = "Easy";
+constexpr const char* MEDIUM = "Medium";
+constexpr const char* HARD = "Hard";
+
+// variant пример типа оборудования
+using EquipmentType = std::variant<QString, int>;
+
 ExerciseRepository::ExerciseRepository()
 {
 
     exercises.append(
-        Exercise("biceps", "Barbell Curl", "Medium", "Barbell")
+        Exercise("biceps", "Barbell Curl", MEDIUM, "Barbell")
         );
 
     exercises.append(
-        Exercise("biceps", "Hammer Curl", "Easy", "Dumbbells")
+        Exercise("biceps", "Hammer Curl", EASY, "Dumbbells")
         );
 
     exercises.append(
-        Exercise("biceps", "Concentration Curl", "Medium", "Dumbbells")
+        Exercise("biceps", "Concentration Curl", MEDIUM, "Dumbbells")
         );
 
     exercises.append(
-        Exercise("chest", "Bench Press", "Hard", "Barbell")
+        Exercise("chest", "Bench Press", HARD, "Barbell")
         );
 
     exercises.append(
-        Exercise("chest", "Push-ups", "Easy", "Bodyweight")
+        Exercise("chest", "Push-ups", EASY, "Bodyweight")
         );
 
     exercises.append(
-        Exercise("chest", "Incline Dumbbell Press", "Medium", "Dumbbells")
+        Exercise("chest", "Incline Dumbbell Press", MEDIUM, "Dumbbells")
         );
 
     exercises.append(
-        Exercise("triceps", "Tricep Dips", "Medium", "Bodyweight")
+        Exercise("triceps", "Tricep Dips", MEDIUM, "Bodyweight")
         );
 
     exercises.append(
-        Exercise("triceps", "Overhead Tricep Extension", "Medium", "Dumbbells")
+        Exercise("triceps", "Overhead Tricep Extension", MEDIUM, "Dumbbells")
         );
 
     exercises.append(
-        Exercise("legs", "Squats", "Hard", "Barbell")
+        Exercise("legs", "Squats", HARD, "Barbell")
         );
 
     exercises.append(
-        Exercise("legs", "Lunges", "Medium", "Bodyweight")
+        Exercise("legs", "Lunges", MEDIUM, "Bodyweight")
         );
 
     exercises.append(
-        Exercise("shoulders", "Shoulder Press", "Medium", "Dumbbells")
+        Exercise("shoulders", "Shoulder Press", MEDIUM, "Dumbbells")
         );
 
     exercises.append(
-        Exercise("shoulders", "Lateral Raise", "Easy", "Dumbbells")
+        Exercise("shoulders", "Lateral Raise", EASY, "Dumbbells")
         );
 }
 
-void ExerciseRepository::addExercise(const Exercise& e)
-{
+void ExerciseRepository::addExercise(const Exercise& e){
     exercises.append(e);
 }
 
-QStringList ExerciseRepository::exerciseNamesForMuscle(const QString& muscleId) const
-{
+QStringList ExerciseRepository::exerciseNamesForMuscle(const QString& muscleId) const{
     QStringList result;
 
-    for (const auto& e : exercises)
-    {
-        if (e.muscleId == muscleId)
-        {
+    for (const auto& e : exercises){
+        if (e.muscleId == muscleId){
             result.append(e.name);
         }
     }
@@ -72,17 +81,68 @@ QStringList ExerciseRepository::exerciseNamesForMuscle(const QString& muscleId) 
     return result;
 }
 
-QStringList ExerciseRepository::allMuscleIds() const
-{
+QStringList ExerciseRepository::allMuscleIds() const{
     QStringList result;
 
-    for (const auto& e : exercises)
-    {
-        if (!result.contains(e.muscleId))
-        {
+    for (const auto& e : exercises){
+        if (!result.contains(e.muscleId)){
             result.append(e.muscleId);
         }
     }
 
     return result;
+}
+
+// optional
+std::optional<Exercise> ExerciseRepository::findExerciseByName(const QString& name) const
+{
+    for (const auto& e : exercises)
+    {
+        if (e.name == name)
+        {
+            return e;
+        }
+    }
+
+    return std::nullopt;
+}
+
+// exceptions
+Exercise ExerciseRepository::getExerciseOrThrow(const QString& name) const
+{
+    for (const auto& e : exercises)
+    {
+        if (e.name == name)
+        {
+            return e;
+        }
+    }
+
+    throw std::runtime_error("Exercise not found");
+}
+
+// unique_ptr
+std::unique_ptr<Exercise> ExerciseRepository::createExerciseCopy(const QString& name) const
+{
+    for (const auto& e : exercises)
+    {
+        if (e.name == name)
+        {
+            return std::make_unique<Exercise>(e);
+        }
+    }
+
+    return nullptr;
+}
+std::shared_ptr<Exercise> ExerciseRepository::getSharedExercise(const QString& name) const
+{
+    for (const auto& e : exercises)
+    {
+        if (e.name == name)
+        {
+            return std::make_shared<Exercise>(e);
+        }
+    }
+
+    return nullptr;
 }
