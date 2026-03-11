@@ -14,6 +14,8 @@ qt_add_executable(appProjectFSML
     src/app/AppController.h
     src/data/DataStore.cpp
     src/data/ExerciseRepository.cpp
+    src/data/ExerciseRepository.h
+    src/data/Exercise.h
     src/data/DataStore.h
     resources.qrc
 )
