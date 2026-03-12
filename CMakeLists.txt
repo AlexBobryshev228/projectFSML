@@ -42,7 +42,7 @@ qt_add_qml_module(appProjectFSML
         QML_FILES
         QML_FILES
         SOURCES src/data/muscleregionmodel.h src/data/muscleregionmodel.cpp
-        QML_FILES clickablemusclesnorm.qml
+        QML_FILES Clickablemusclesnorm.qml
 )
 
 set_target_properties(appProjectFSML PROPERTIES
