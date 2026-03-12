@@ -38,6 +38,8 @@ qt_add_qml_module(appProjectFSML
         SOURCES
         QML_FILES
         QML_FILES
+        QML_FILES
+        SOURCES src/data/muscleregionmodel.h src/data/muscleregionmodel.cpp
 )
 
 set_target_properties(appProjectFSML PROPERTIES
