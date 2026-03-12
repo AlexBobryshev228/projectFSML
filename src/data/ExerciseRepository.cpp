@@ -15,78 +15,53 @@ using EquipmentType = std::variant<QString, int>;
 
 ExerciseRepository::ExerciseRepository()
 {
+    exercises.append(Exercise("biceps", "Barbell Curl", MEDIUM, "Barbell"));
+    exercises.append(Exercise("biceps", "Hammer Curl", EASY, "Dumbbells"));
+    exercises.append(Exercise("biceps", "Concentration Curl", MEDIUM, "Dumbbells"));
 
-    exercises.append(
-        Exercise("biceps", "Barbell Curl", MEDIUM, "Barbell")
-        );
+    exercises.append(Exercise("chest", "Bench Press", HARD, "Barbell"));
+    exercises.append(Exercise("chest", "Push-ups", EASY, "Bodyweight"));
+    exercises.append(Exercise("chest", "Incline Dumbbell Press", MEDIUM, "Dumbbells"));
 
-    exercises.append(
-        Exercise("biceps", "Hammer Curl", EASY, "Dumbbells")
-        );
+    exercises.append(Exercise("triceps", "Tricep Dips", MEDIUM, "Bodyweight"));
+    exercises.append(Exercise("triceps", "Overhead Tricep Extension", MEDIUM, "Dumbbells"));
 
-    exercises.append(
-        Exercise("biceps", "Concentration Curl", MEDIUM, "Dumbbells")
-        );
+    exercises.append(Exercise("legs", "Squats", HARD, "Barbell"));
+    exercises.append(Exercise("legs", "Lunges", MEDIUM, "Bodyweight"));
 
-    exercises.append(
-        Exercise("chest", "Bench Press", HARD, "Barbell")
-        );
-
-    exercises.append(
-        Exercise("chest", "Push-ups", EASY, "Bodyweight")
-        );
-
-    exercises.append(
-        Exercise("chest", "Incline Dumbbell Press", MEDIUM, "Dumbbells")
-        );
-
-    exercises.append(
-        Exercise("triceps", "Tricep Dips", MEDIUM, "Bodyweight")
-        );
-
-    exercises.append(
-        Exercise("triceps", "Overhead Tricep Extension", MEDIUM, "Dumbbells")
-        );
-
-    exercises.append(
-        Exercise("legs", "Squats", HARD, "Barbell")
-        );
-
-    exercises.append(
-        Exercise("legs", "Lunges", MEDIUM, "Bodyweight")
-        );
-
-    exercises.append(
-        Exercise("shoulders", "Shoulder Press", MEDIUM, "Dumbbells")
-        );
-
-    exercises.append(
-        Exercise("shoulders", "Lateral Raise", EASY, "Dumbbells")
-        );
+    exercises.append(Exercise("shoulders", "Shoulder Press", MEDIUM, "Dumbbells"));
+    exercises.append(Exercise("shoulders", "Lateral Raise", EASY, "Dumbbells"));
 }
 
-void ExerciseRepository::addExercise(const Exercise& e){
+void ExerciseRepository::addExercise(const Exercise& e)
+{
     exercises.append(e);
 }
 
-QStringList ExerciseRepository::exerciseNamesForMuscle(const QString& muscleId) const{
+QStringList ExerciseRepository::exerciseNamesForMuscle(const QString& muscleId) const
+{
     QStringList result;
 
-    for (const auto& e : exercises){
-        if (e.muscleId == muscleId){
-            result.append(e.name);
+    for (const auto& e : exercises)
+    {
+        if (e.getMuscleId() == muscleId)
+        {
+            result.append(e.getName());
         }
     }
 
     return result;
 }
 
-QStringList ExerciseRepository::allMuscleIds() const{
+QStringList ExerciseRepository::allMuscleIds() const
+{
     QStringList result;
 
-    for (const auto& e : exercises){
-        if (!result.contains(e.muscleId)){
-            result.append(e.muscleId);
+    for (const auto& e : exercises)
+    {
+        if (!result.contains(e.getMuscleId()))
+        {
+            result.append(e.getMuscleId());
         }
     }
 
@@ -98,7 +73,7 @@ std::optional<Exercise> ExerciseRepository::findExerciseByName(const QString& na
 {
     for (const auto& e : exercises)
     {
-        if (e.name == name)
+        if (e.getName() == name)
         {
             return e;
         }
@@ -112,7 +87,7 @@ Exercise ExerciseRepository::getExerciseOrThrow(const QString& name) const
 {
     for (const auto& e : exercises)
     {
-        if (e.name == name)
+        if (e.getName() == name)
         {
             return e;
         }
@@ -126,7 +101,7 @@ std::unique_ptr<Exercise> ExerciseRepository::createExerciseCopy(const QString& 
 {
     for (const auto& e : exercises)
     {
-        if (e.name == name)
+        if (e.getName() == name)
         {
             return std::make_unique<Exercise>(e);
         }
@@ -134,11 +109,13 @@ std::unique_ptr<Exercise> ExerciseRepository::createExerciseCopy(const QString& 
 
     return nullptr;
 }
+
+// shared_ptr
 std::shared_ptr<Exercise> ExerciseRepository::getSharedExercise(const QString& name) const
 {
     for (const auto& e : exercises)
     {
-        if (e.name == name)
+        if (e.getName() == name)
         {
             return std::make_shared<Exercise>(e);
         }
