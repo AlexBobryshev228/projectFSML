@@ -1,74 +1,24 @@
 #include "DataStore.h"
 
-MuscleInfo DataStore::muscleInfo(const QString& id) const
-{
-    if (id == "biceps") {
-        return MuscleInfo(
-            "biceps",
-            "Бицепс",
-            "Сгибает руку в локте.",
-            {"Barbell Curl", "Hammer Curl", "Concentration Curl"}
-            );
-    }
-
-    if (id == "chest") {
-        return MuscleInfo(
-            "chest",
-            "Грудные мышцы",
-            "Участвуют в жимовых движениях и сведении рук.",
-            {"Bench Press", "Incline Dumbbell Press", "Push-Ups"}
-            );
-    }
-
-    if (id == "shoulders") {
-        return MuscleInfo(
-            "shoulders",
-            "Плечи",
-            "Поднимают и стабилизируют руки.",
-            {"Overhead Press", "Lateral Raise", "Front Raise"}
-            );
-    }
-
-    if (id == "quads") {
-        return MuscleInfo(
-            "legs",
-            "Квадрицепцы",
-            "Отвечают за приседания, выпады, ходьбу и бег.",
-            {"Squat", "Lunge", "Leg Press"}
-            );
-    }
-
-    if (id == "triceps") {
-        return MuscleInfo(
-            "triceps",
-            "Трицепс",
-            "Разгибает руку в локте.",
-            {"Tricep Pushdown", "Dips", "Skull Crushers"}
-            );
-    }
-    if (id == "abs") {
-        return MuscleInfo(
-            "abs",
-            "Пресс",
-            "Обеспечивает стабильность и движение туловища",
-            {"Plank", "Backside burner", "Bottom up"}
-            );
-    }
-
-    return MuscleInfo(
-        id,
-        "Неизвестно",
-        "",
-        {}
-        );
-}
-
 QString DataStore::muscleName(const QString& id) const
 {
-    return muscleInfo(id).name();
+    if (id == "biceps") return "Biceps";
+    if (id == "chest")  return "Chest";
+    if (id == "quads")  return "Quadriceps";
+    if (id == "abs")  return "Abs";
+    if (id == "lats") return "Lats";
+    if (id == "calves") return "Calves";
+
+    return "Неизвестно";
 }
 
 QString DataStore::muscleDescription(const QString& id) const
 {
-    return muscleInfo(id).description();
+    if (id == "biceps") return "Front upper-arm muscles that flex the elbow and help rotate the forearm";
+    if (id == "chest")  return "Muscles that push the arms forward and inward (pressing movements) and assist shoulder flexion";
+    if (id == "quads")  return "Front thigh muscles that extend the knee and help stabilize the leg during standing and walking";
+    if (id == "abs")  return "Core muscles that flex the trunk, stabilize the spine, and help maintain posture and balance.";
+    if (id == "lats") return "Large back muscles that pull the arms down and back, helping with pull-ups, rows, and posture/stability.";
+    if (id == "calves") return "Lower-leg muscles that point the foot downward (plantarflexion) and support walking, running, and jumping.";
+    return "";
 }
