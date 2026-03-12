@@ -49,11 +49,11 @@ ExerciseRepository::ExerciseRepository()
         );
 
     exercises.append(
-        Exercise("legs", "Squats", HARD, "Barbell")
+        Exercise("quads", "Squats", HARD, "Barbell")
         );
 
     exercises.append(
-        Exercise("legs", "Lunges", MEDIUM, "Bodyweight")
+        Exercise("quads", "Lunges", MEDIUM, "Bodyweight")
         );
 
     exercises.append(
@@ -62,6 +62,9 @@ ExerciseRepository::ExerciseRepository()
 
     exercises.append(
         Exercise("shoulders", "Lateral Raise", EASY, "Dumbbells")
+        );
+    exercises.append(
+        Exercise("Plank", "Backside burner", EASY, "Bottom up")
         );
 }
 

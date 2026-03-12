@@ -29,10 +29,10 @@ MuscleInfo DataStore::muscleInfo(const QString& id) const
             );
     }
 
-    if (id == "legs") {
+    if (id == "quads") {
         return MuscleInfo(
             "legs",
-            "Ноги",
+            "Квадрицепцы",
             "Отвечают за приседания, выпады, ходьбу и бег.",
             {"Squat", "Lunge", "Leg Press"}
             );
@@ -44,6 +44,14 @@ MuscleInfo DataStore::muscleInfo(const QString& id) const
             "Трицепс",
             "Разгибает руку в локте.",
             {"Tricep Pushdown", "Dips", "Skull Crushers"}
+            );
+    }
+    if (id == "abs") {
+        return MuscleInfo(
+            "abs",
+            "Пресс",
+            "Обеспечивает стабильность и движение туловища",
+            {"Plank", "Backside burner", "Bottom up"}
             );
     }
 
