@@ -1,10 +1,24 @@
-#ifndef MUSCLEREGIONMODEL_H
-#define MUSCLEREGIONMODEL_H
+#pragma once
 
-class muscleregionmodel
+#include <QAbstractListModel>
+#include <QVector>
+#include "muscleregion.h"
+
+class MuscleRegionModel : public QAbstractListModel
 {
+    Q_OBJECT
 public:
-    muscleregionmodel();
-};
+    enum Roles { IdRole = Qt::UserRole + 1, NxRole, NyRole, NwRole, NhRole };
+    Q_ENUM(Roles)
 
-#endif // MUSCLEREGIONMODEL_H
+    explicit MuscleRegionModel(QObject* parent = nullptr);
+
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role) const override;
+    QHash<int, QByteArray> roleNames() const override;
+
+    Q_INVOKABLE void resetToDefault();
+
+private:
+    QVector<MuscleRegion> regions_;
+};
