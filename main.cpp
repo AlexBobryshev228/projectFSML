@@ -12,9 +12,6 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    MuscleRegionModel regionModel;
-    engine.rootContext()->setContextProperty("regionModel", &regionModel);
-
     AppController controller;
     engine.rootContext()->setContextProperty("app", &controller);
 

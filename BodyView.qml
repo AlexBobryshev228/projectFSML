@@ -11,15 +11,4 @@ Rectangle {
         fillMode: Image.PreserveAspectFit
         smooth: true
     }
-    Repeater {
-        model: regionModel
-        delegate: ClickableMuscleNorm {
-            imageItem: bodyImage
-            muscleId: model.id
-            nx: model.nx
-            ny: model.ny
-            nw: model.nw
-            nh: model.nh
-        }
-    }
 }
