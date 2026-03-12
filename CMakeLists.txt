@@ -17,6 +17,7 @@ qt_add_executable(appProjectFSML
     src/data/ExerciseRepository.cpp
     src/data/ExerciseRepository.h
     src/data/Exercise.h
+    src/data/MuscleInfo.h
 )
 
 qt_add_qml_module(appProjectFSML
@@ -30,6 +31,7 @@ qt_add_qml_module(appProjectFSML
     RESOURCES
         images/body.png
         data/data.json
+        SOURCES src/data/muscleinfo.h
 )
 
 set_target_properties(appProjectFSML PROPERTIES

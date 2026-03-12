@@ -1,23 +1,66 @@
 #include "DataStore.h"
 
+MuscleInfo DataStore::muscleInfo(const QString& id) const
+{
+    if (id == "biceps") {
+        return MuscleInfo(
+            "biceps",
+            "Бицепс",
+            "Сгибает руку в локте.",
+            {"Barbell Curl", "Hammer Curl", "Concentration Curl"}
+            );
+    }
+
+    if (id == "chest") {
+        return MuscleInfo(
+            "chest",
+            "Грудные мышцы",
+            "Участвуют в жимовых движениях и сведении рук.",
+            {"Bench Press", "Incline Dumbbell Press", "Push-Ups"}
+            );
+    }
+
+    if (id == "shoulders") {
+        return MuscleInfo(
+            "shoulders",
+            "Плечи",
+            "Поднимают и стабилизируют руки.",
+            {"Overhead Press", "Lateral Raise", "Front Raise"}
+            );
+    }
+
+    if (id == "legs") {
+        return MuscleInfo(
+            "legs",
+            "Ноги",
+            "Отвечают за приседания, выпады, ходьбу и бег.",
+            {"Squat", "Lunge", "Leg Press"}
+            );
+    }
+
+    if (id == "triceps") {
+        return MuscleInfo(
+            "triceps",
+            "Трицепс",
+            "Разгибает руку в локте.",
+            {"Tricep Pushdown", "Dips", "Skull Crushers"}
+            );
+    }
+
+    return MuscleInfo(
+        id,
+        "Неизвестно",
+        "",
+        {}
+        );
+}
+
 QString DataStore::muscleName(const QString& id) const
 {
-    if (id == "biceps") return "Бицепс";
-    if (id == "chest") return "Грудные мышцы";
-    if (id == "triceps") return "Трицепс";
-    if (id == "legs") return "Ноги";
-    if (id == "shoulders") return "Плечи";
-
-    return "Неизвестно";
+    return muscleInfo(id).name();
 }
 
 QString DataStore::muscleDescription(const QString& id) const
 {
-    if (id == "biceps") return "Сгибает руку в локте.";
-    if (id == "chest") return "Участвует в жимовых движениях и сведении рук.";
-    if (id == "triceps") return "Разгибает руку в локте.";
-    if (id == "legs") return "Отвечают за приседания, выпады, ходьбу и бег.";
-    if (id == "shoulders") return "Поднимают и стабилизируют руки.";
-
-    return "";
+    return muscleInfo(id).description();
 }

@@ -1,11 +1,13 @@
 #pragma once
 
 #include <QString>
-#include <QStringList>
+#include "MuscleInfo.h"
 
-class DataStore {
+class DataStore
+{
 public:
+    MuscleInfo muscleInfo(const QString& id) const;
+
     QString muscleName(const QString& id) const;
     QString muscleDescription(const QString& id) const;
-
 };
