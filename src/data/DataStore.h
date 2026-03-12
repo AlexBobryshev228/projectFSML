@@ -2,7 +2,7 @@
 
 #include <QString>
 #include "MuscleInfo.h"
-
+QStringList allMuscleIds();
 class DataStore
 {
 public:
