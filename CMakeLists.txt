@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(ProjectFSML VERSION 0.1 LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick)
@@ -21,9 +22,12 @@ qt_add_executable(appProjectFSML
     src/data/muscleregion.h
     src/data/muscleregionmodel.h
     src/data/muscleregionmodel.cpp
-
-
+    src/workout/WorkoutStep.h
+    src/workout/WorkoutPlan.h
+    src/workout/WorkoutPlanner.h
+    src/workout/WorkoutPlanner.cpp
 )
+
 qt_add_qml_module(appProjectFSML
     URI ProjectFSML
     VERSION 1.0
@@ -32,17 +36,10 @@ qt_add_qml_module(appProjectFSML
         BodyView.qml
         InfoPanel.qml
         MuscleZone.qml
+        Clickablemusclesnorm.qml
     RESOURCES
         images/body.png
         data/data.json
-        SOURCES src/data/muscleinfo.h
-        SOURCES src/data/muscleregion.h
-        SOURCES
-        QML_FILES
-        QML_FILES
-        QML_FILES
-        SOURCES src/data/muscleregionmodel.h src/data/muscleregionmodel.cpp
-        QML_FILES Clickablemusclesnorm.qml
 )
 
 set_target_properties(appProjectFSML PROPERTIES
