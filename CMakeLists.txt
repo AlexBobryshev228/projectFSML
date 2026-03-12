@@ -13,31 +13,26 @@ qt_add_executable(appProjectFSML
     src/app/AppController.cpp
     src/app/AppController.h
     src/data/DataStore.cpp
+    src/data/DataStore.h
     src/data/ExerciseRepository.cpp
     src/data/ExerciseRepository.h
     src/data/Exercise.h
-    src/data/DataStore.h
-    resources.qrc
 )
 
 qt_add_qml_module(appProjectFSML
     URI ProjectFSML
+    VERSION 1.0
     QML_FILES
         Main.qml
-        SOURCES src/data/Exercise.h
-        SOURCES src/data/ExerciseRepository.h
-        SOURCES src/data/ExerciseRepository.h src/data/ExerciseRepository.cpp
-        RESOURCES
-            assets2/body.png
-            data/data.json
-        )
+        BodyView.qml
+        InfoPanel.qml
+        MuscleZone.qml
+    RESOURCES
+        images/body.png
+        data/data.json
+)
 
-
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
 set_target_properties(appProjectFSML PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appProjectFSML
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
