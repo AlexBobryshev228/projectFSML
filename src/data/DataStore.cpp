@@ -3,7 +3,6 @@
 
 QStringList DataStore::allMuscleIds() const
 {
-
     return {"biceps", "chest", "abs", "lats", "quads", "calves"};
 }
 QString DataStore::muscleName(const QString& id) const

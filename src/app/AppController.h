@@ -1,5 +1,5 @@
 #pragma once
-
+#include "MuscleSearchService.h"
 #include <QObject>
 #include <QStringList>
 #include "../data/DataStore.h"
@@ -13,10 +13,10 @@ class AppController : public QObject
     Q_PROPERTY(QString muscleName READ muscleName NOTIFY muscleNameChanged)
     Q_PROPERTY(QString muscleDescription READ muscleDescription NOTIFY muscleDescriptionChanged)
     Q_PROPERTY(QStringList exercises READ exercises NOTIFY exercisesChanged)
-
+    Q_PROPERTY(QStringList muscleResults READ muscleResults NOTIFY muscleResultsChanged)
 public:
     explicit AppController();
-
+    QStringList muscleResults() const { return muscleResults_; }
     QString selectedMuscleId() const {
         return selectedMuscleId_;
     }
@@ -29,19 +29,22 @@ public:
     QStringList exercises() const {
         return exercises_;
     }
-    Q_INVOKABLE void selectMuscle(const QString& id); //делаем чтобы qml видел нашу функцию
-signals: //сигналы что поменялось
+    Q_INVOKABLE void selectMuscle(const QString& id);
+    Q_INVOKABLE void setMuscleSearchQuery(const QString& q);
+signals:
     void selectedMuscleIdChanged();
     void muscleNameChanged();
     void muscleDescriptionChanged();
     void exercisesChanged();
-
+    void muscleResultsChanged();
 private:
     void applySelection(const QString& id);
     ExerciseRepository exerciseRepo_;
-    DataStore store_; // наш источник
-    QString selectedMuscleId_;  // мышца которую мы выбрали
-    QString muscleName_;        // имя выбранной мышцы
-    QString muscleDescription_; // описание выбранной мышцы
-    QStringList exercises_;     // список упражнений выбранной мышцы
+    DataStore store_;
+    QString selectedMuscleId_;
+    QString muscleName_;
+    QString muscleDescription_;
+    QStringList exercises_;
+    MuscleSearchService searcher_;
+    QStringList muscleResults_;
 };

@@ -23,4 +23,41 @@ ApplicationWindow {
             Layout.fillHeight: true
         }
     }
+
+    Column {
+        spacing: 8
+        width: 240
+
+        TextField {
+            placeholderText: "Search muscle..."
+            onTextChanged: app.setMuscleSearchQuery(text)
+        }
+
+        ListView {
+            width: parent.width
+            height: 200
+            model: app.muscleResults
+
+            delegate: Rectangle {
+                width: parent.width
+                height: 32
+                color: "transparent"
+
+                Text {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 8
+                    text: modelData
+                    color: "white"
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: app.selectMuscle(modelData)
+                }
+            }
+        }
+    }
 }
