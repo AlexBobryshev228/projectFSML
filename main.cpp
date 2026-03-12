@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "src/app/AppController.h"
+#include "src/data/muscleregionmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    MuscleRegionModel regionModel;
+    engine.rootContext()->setContextProperty("regionModel", &regionModel);
 
     AppController controller;
     engine.rootContext()->setContextProperty("app", &controller);
