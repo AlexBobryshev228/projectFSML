@@ -16,7 +16,7 @@ Rectangle {
 
     radius: Math.min(width, height) / 2
     color: app.selectedMuscleId === muscleId ? "#66ff6b6b" : "#4470c1ff"
-    border.width: 1
+    border.width: l
     border.color: "#88cfff"
 
     MouseArea {
