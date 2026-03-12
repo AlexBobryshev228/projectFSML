@@ -11,6 +11,7 @@ void AppController::applySelection(const QString& id){
     muscleName_ = store_.muscleName(id);
     muscleDescription_ = store_.muscleDescription(id);
     exercises_ = exerciseRepo_.exerciseNamesForMuscle(id);
+    logger_.info("Selected muscle: " + id + ", exercises: " + QString::number(exercises_.size()));
     emit selectedMuscleIdChanged();
     emit muscleNameChanged();
     emit muscleDescriptionChanged();

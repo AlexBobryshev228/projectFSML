@@ -4,6 +4,7 @@
 #include <QStringList>
 #include "../data/DataStore.h"
 #include "../data/ExerciseRepository.h"
+#include "AppLogger.h"
 
 class AppController : public QObject
 {
@@ -47,4 +48,6 @@ private:
     QStringList exercises_;
     MuscleSearchService searcher_;
     QStringList muscleResults_;
+    AppLogger logger_;
 };
+
