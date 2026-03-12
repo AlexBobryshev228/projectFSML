@@ -45,17 +45,16 @@ void MuscleRegionModel::resetToDefault()
     beginResetModel();
     regions_.clear();
 
-    // Координаты 0..1 (примерные, потом подвинете)
-    regions_.push_back({ "chest",  0.150, 0.166, 0.169, 0.146 });
-    regions_.push_back({ "abs",    0.195, 0.322, 0.091, 0.234 });
-    regions_.push_back({ "biceps", 0.098, 0.259, 0.059, 0.137 });
-    regions_.push_back({ "biceps", 0.326, 0.259, 0.059, 0.137 });
-    regions_.push_back({ "quads",  0.186, 0.601, 0.072, 0.244 });
-    regions_.push_back({ "quads",  0.264, 0.601, 0.072, 0.244 });
-    regions_.push_back({ "calves", 0.195, 0.854, 0.059, 0.127 });
-    regions_.push_back({ "calves", 0.267, 0.854, 0.059, 0.127 });
-    regions_.push_back({ "lats",   0.671, 0.244, 0.098, 0.234 });
-    regions_.push_back({ "lats",   0.781, 0.244, 0.098, 0.234 });
+    regions_.push_back({ "chest",  0.247, 0.2, 0.135, 0.09 });
+    regions_.push_back({ "abs",    0.278, 0.285, 0.07, 0.18 });
+    regions_.push_back({ "biceps", 0.22, 0.259, 0.03, 0.1 });
+    regions_.push_back({ "biceps", 0.38, 0.259, 0.03, 0.1 });
+    regions_.push_back({ "quads",  0.25, 0.5, 0.05, 0.2 });
+    regions_.push_back({ "quads",  0.328, 0.5, 0.05, 0.2 });
+    regions_.push_back({ "calves", 0.257, 0.7, 0.029, 0.127 });
+    regions_.push_back({ "calves", 0.343, 0.7, 0.029, 0.127 });
+    regions_.push_back({ "lats",   0.615, 0.21, 0.064, 0.2 });
+    regions_.push_back({ "lats",   0.6958, 0.21, 0.064, 0.2 });
 
     endResetModel();
 }
