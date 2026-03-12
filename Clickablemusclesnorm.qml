@@ -8,6 +8,7 @@ Item {
     property real ny: 0
     property real nw: 0.1
     property real nh: 0.1
+    property bool alwaysVisible: true
 
     readonly property bool isSelected: app.selectedMuscleId === muscleId
     readonly property bool isHover: mouse.containsMouse
@@ -23,9 +24,13 @@ Item {
     Rectangle {
         anchors.fill: parent
         radius: 10
-        color: isSelected ? "#66ff6b6b" : (isHover ? "#55fff176" : "#00000000")
+        color: isSelected ? "#66ff6b6b"
+             : isHover    ? "#FFB74D00"
+             : (alwaysVisible ? "#55ff9800" : "#00000000")
+        border.color: isSelected ? "#ff4040"
+                   : isHover    ? "#FFE600"
+                   : (alwaysVisible ? "#FFB74D" : "#00000000")
         border.width: isSelected ? 3 : (isHover ? 2 : 1)
-        border.color: isSelected ? "#ff4040" : (isHover ? "#ffe600" : "#00000000")
     }
 
     MouseArea {
