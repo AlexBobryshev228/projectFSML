@@ -21,6 +21,8 @@ qt_add_executable(appProjectFSML
     src/data/muscleregion.h
     src/data/muscleregionmodel.h
     src/data/muscleregionmodel.cpp
+    src/data/MuscleStats.h
+    src/data/MuscleStats.cpp
 
 
 )
@@ -45,6 +47,7 @@ qt_add_qml_module(appProjectFSML
         QML_FILES Clickablemusclesnorm.qml
         SOURCES src/app/MuscleSearchService.h
         SOURCES src/app/MuscleSerchService.cpp
+        SOURCES src/data/musclestats.h src/data/musclestats.cpp
 )
 
 set_target_properties(appProjectFSML PROPERTIES

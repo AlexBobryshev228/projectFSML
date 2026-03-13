@@ -1,24 +1,82 @@
 #include "AppController.h"
-AppController::AppController(){
 
-}
-void AppController::selectMuscle(const QString& id){
-    applySelection(id);
-}
-void AppController::applySelection(const QString& id){
-    if (id == selectedMuscleId_) return;
-    selectedMuscleId_ = id;
-    muscleName_ = store_.muscleName(id);
-    muscleDescription_ = store_.muscleDescription(id);
-    exercises_ = exerciseRepo_.exerciseNamesForMuscle(id);
-    emit selectedMuscleIdChanged();
-    emit muscleNameChanged();
-    emit muscleDescriptionChanged();
-    emit exercisesChanged();
-}
-void AppController::setMuscleSearchQuery(const QString& q)
+AppController::AppController(QObject *parent)
+    : QObject(parent)
 {
-    muscleResults_ = searcher_.search(q);
-    emit muscleResultsChanged();
 }
 
+void AppController::selectMuscle(const QString& id)
+{
+    if (id.isEmpty())
+        return;
+
+    selectedMuscleId_ = id;
+    stats_.registerSelection(id);
+
+    emit selectedMuscleChanged();
+    emit statsChanged();
+}
+
+QString AppController::selectedMuscleId() const
+{
+    return selectedMuscleId_;
+}
+
+QString AppController::muscleName() const
+{
+    if (selectedMuscleId_.isEmpty())
+        return "Select a muscle";
+
+    return dataStore_.muscleName(selectedMuscleId_);
+}
+
+QString AppController::muscleDescription() const
+{
+    if (selectedMuscleId_.isEmpty())
+        return "Click on a muscle zone to see information.";
+
+    return dataStore_.muscleDescription(selectedMuscleId_);
+}
+
+QStringList AppController::exerciseList() const
+{
+    if (selectedMuscleId_.isEmpty())
+        return {};
+
+    return exerciseRepository_.exerciseNamesForMuscle(selectedMuscleId_);
+}
+
+int AppController::totalSelections() const
+{
+    return stats_.totalSelections();
+}
+
+QString AppController::mostPopularMuscle() const
+{
+    const QString id = stats_.mostPopularMuscle();
+    if (id.isEmpty())
+        return "No data";
+
+    return dataStore_.muscleName(id);
+}
+
+int AppController::currentMuscleClicks() const
+{
+    if (selectedMuscleId_.isEmpty())
+        return 0;
+
+    return stats_.selectionCount(selectedMuscleId_);
+}
+
+QStringList AppController::recentSelections() const
+{
+    QStringList ids = stats_.recentSelections();
+    QStringList names;
+
+    for (const QString& id : ids)
+    {
+        names.append(dataStore_.muscleName(id));
+    }
+
+    return names;
+}

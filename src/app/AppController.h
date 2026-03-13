@@ -1,50 +1,49 @@
 #pragma once
-#include "MuscleSearchService.h"
+
 #include <QObject>
+#include <QString>
 #include <QStringList>
+
 #include "../data/DataStore.h"
 #include "../data/ExerciseRepository.h"
+#include "../data/MuscleStats.h"
 
 class AppController : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString selectedMuscleId READ selectedMuscleId NOTIFY selectedMuscleIdChanged)
-    Q_PROPERTY(QString muscleName READ muscleName NOTIFY muscleNameChanged)
-    Q_PROPERTY(QString muscleDescription READ muscleDescription NOTIFY muscleDescriptionChanged)
-    Q_PROPERTY(QStringList exercises READ exercises NOTIFY exercisesChanged)
-    Q_PROPERTY(QStringList muscleResults READ muscleResults NOTIFY muscleResultsChanged)
+    Q_PROPERTY(QString selectedMuscleId READ selectedMuscleId NOTIFY selectedMuscleChanged)
+    Q_PROPERTY(QString muscleName READ muscleName NOTIFY selectedMuscleChanged)
+    Q_PROPERTY(QString muscleDescription READ muscleDescription NOTIFY selectedMuscleChanged)
+    Q_PROPERTY(QStringList exerciseList READ exerciseList NOTIFY selectedMuscleChanged)
+
+    Q_PROPERTY(int totalSelections READ totalSelections NOTIFY statsChanged)
+    Q_PROPERTY(QString mostPopularMuscle READ mostPopularMuscle NOTIFY statsChanged)
+    Q_PROPERTY(int currentMuscleClicks READ currentMuscleClicks NOTIFY statsChanged)
+    Q_PROPERTY(QStringList recentSelections READ recentSelections NOTIFY statsChanged)
+
 public:
-    explicit AppController();
-    QStringList muscleResults() const { return muscleResults_; }
-    QString selectedMuscleId() const {
-        return selectedMuscleId_;
-    }
-    QString muscleName() const {
-        return muscleName_;
-    }
-    QString muscleDescription() const {
-        return muscleDescription_;
-    }
-    QStringList exercises() const {
-        return exercises_;
-    }
+    explicit AppController(QObject *parent = nullptr);
+
     Q_INVOKABLE void selectMuscle(const QString& id);
-    Q_INVOKABLE void setMuscleSearchQuery(const QString& q);
+
+    QString selectedMuscleId() const;
+    QString muscleName() const;
+    QString muscleDescription() const;
+    QStringList exerciseList() const;
+
+    int totalSelections() const;
+    QString mostPopularMuscle() const;
+    int currentMuscleClicks() const;
+    QStringList recentSelections() const;
+
 signals:
-    void selectedMuscleIdChanged();
-    void muscleNameChanged();
-    void muscleDescriptionChanged();
-    void exercisesChanged();
-    void muscleResultsChanged();
+    void selectedMuscleChanged();
+    void statsChanged();
+
 private:
-    void applySelection(const QString& id);
-    ExerciseRepository exerciseRepo_;
-    DataStore store_;
     QString selectedMuscleId_;
-    QString muscleName_;
-    QString muscleDescription_;
-    QStringList exercises_;
-    MuscleSearchService searcher_;
-    QStringList muscleResults_;
+    DataStore dataStore_;
+    ExerciseRepository exerciseRepository_;
+    MuscleStats stats_;
 };

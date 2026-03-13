@@ -1,7 +1,9 @@
 #pragma once
 
 #include <QString>
+#include <QStringList>
 #include "MuscleInfo.h"
+
 class DataStore
 {
 public:
