@@ -3,19 +3,20 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
-    color: "#1c1c1c"
+    color: "#1e1e1e"
+    radius: 12
     border.color: "#333333"
     border.width: 1
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 20
-        spacing: 14
+        anchors.margins: 16
+        spacing: 12
 
         Label {
-            text: "Информация"
+            text: "Muscle info"
             color: "white"
-            font.pixelSize: 26
+            font.pixelSize: 24
             font.bold: true
         }
 
@@ -26,54 +27,133 @@ Rectangle {
         }
 
         Label {
-            text: app.muscleName === "" ? "Выбери мышцу" : app.muscleName
+            text: app.muscleName
             color: "#f5f5f5"
-            font.pixelSize: 22
+            font.pixelSize: 20
             font.bold: true
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }
 
         Label {
-            text: app.muscleDescription === "" ? "Нажми на область на теле." : app.muscleDescription
-            color: "#cfcfcf"
-            font.pixelSize: 16
+            text: app.muscleDescription
+            color: "#d0d0d0"
+            font.pixelSize: 15
             wrapMode: Text.WordWrap
             Layout.fillWidth: true
         }
 
         Label {
-            text: "Упражнения"
+            text: "Exercises"
             color: "white"
             font.pixelSize: 18
             font.bold: true
-            topPadding: 10
+            topPadding: 6
         }
 
         Rectangle {
             Layout.fillWidth: true
-            Layout.fillHeight: true
-            radius: 12
-            color: "#252525"
+            Layout.preferredHeight: 140
+            radius: 10
+            color: "#2a2a2a"
             border.color: "#3a3a3a"
 
             ListView {
                 anchors.fill: parent
                 anchors.margins: 10
-                model: app.exercises
-                spacing: 8
+                model: app.exerciseList
+                spacing: 6
+                clip: true
 
                 delegate: Rectangle {
                     width: ListView.view.width
-                    height: 48
-                    radius: 10
-                    color: "#323232"
+                    height: 34
+                    radius: 8
+                    color: "#353535"
 
                     Text {
                         anchors.centerIn: parent
                         text: modelData
                         color: "white"
-                        font.pixelSize: 15
+                        font.pixelSize: 14
+                    }
+                }
+            }
+        }
+
+        Label {
+            text: "Statistics"
+            color: "white"
+            font.pixelSize: 18
+            font.bold: true
+            topPadding: 8
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 100
+            radius: 10
+            color: "#2a2a2a"
+            border.color: "#3a3a3a"
+
+            Column {
+                anchors.fill: parent
+                anchors.margins: 12
+                spacing: 8
+
+                Text {
+                    text: "Total selections: " + app.totalSelections
+                    color: "#f0f0f0"
+                    font.pixelSize: 14
+                }
+
+                Text {
+                    text: "Most viewed: " + app.mostPopularMuscle
+                    color: "#f0f0f0"
+                    font.pixelSize: 14
+                }
+
+                Text {
+                    text: "Current muscle clicks: " + app.currentMuscleClicks
+                    color: "#f0f0f0"
+                    font.pixelSize: 14
+                }
+            }
+        }
+
+        Label {
+            text: "Recent muscles"
+            color: "white"
+            font.pixelSize: 18
+            font.bold: true
+            topPadding: 8
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            radius: 10
+            color: "#2a2a2a"
+            border.color: "#3a3a3a"
+
+            ListView {
+                anchors.fill: parent
+                anchors.margins: 10
+                model: app.recentSelections
+                spacing: 6
+                clip: true
+
+                delegate: Rectangle {
+                    width: ListView.view.width
+                    height: 34
+                    radius: 8
+                    color: "#353535"
+
+                    Text {
+                        anchors.centerIn: parent
+                        text: modelData
+                        color: "white"
+                        font.pixelSize: 14
                     }
                 }
             }
