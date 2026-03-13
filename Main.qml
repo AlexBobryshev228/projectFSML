@@ -2,10 +2,11 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-ApplicationWindow {
-    visible: true
+Window {
+    id: root
     width: 1200
     height: 800
+    visible: true
     title: "Muscle Viewer"
     color: "#111111"
 
@@ -27,6 +28,9 @@ ApplicationWindow {
     Column {
         spacing: 8
         width: 240
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 16
 
         TextField {
             placeholderText: "Search muscle..."
